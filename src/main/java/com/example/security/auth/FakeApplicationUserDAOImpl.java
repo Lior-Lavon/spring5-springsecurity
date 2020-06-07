@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository("fake")
-public class ApplicationUserDAOImpl implements ApplicationUserDAO {
+public class FakeApplicationUserDAOImpl implements ApplicationUserDAO {
 
     private final PasswordEncoder passwordEncoder;
 
-    public ApplicationUserDAOImpl(PasswordEncoder passwordEncoder) {
+    public FakeApplicationUserDAOImpl(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
 
