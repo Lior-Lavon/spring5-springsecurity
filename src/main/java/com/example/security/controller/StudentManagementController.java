@@ -37,7 +37,6 @@ public class StudentManagementController {
         return studentService.getById(id);
     }
 
-
     @PostMapping()
     @PreAuthorize("hasAuthority('student:write')")
     @ResponseStatus(HttpStatus.CREATED)

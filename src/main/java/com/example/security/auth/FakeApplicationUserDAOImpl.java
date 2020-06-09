@@ -2,6 +2,7 @@ package com.example.security.auth;
 
 import com.example.security.securityConfig.ApplicationUserRole;
 import com.google.common.collect.Lists;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,7 @@ public class FakeApplicationUserDAOImpl implements ApplicationUserDAO {
 
     private final PasswordEncoder passwordEncoder;
 
+    @Autowired
     public FakeApplicationUserDAOImpl(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }

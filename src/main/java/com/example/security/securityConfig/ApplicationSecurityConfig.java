@@ -9,7 +9,11 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.concurrent.TimeUnit;
@@ -61,7 +65,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 //    }
 
 
-    // wire daoAuthenticationProvider Bean to be used to load content from DB
+//    // wire daoAuthenticationProvider Bean to be used to load content from DB
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
@@ -93,7 +97,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http
 //                .authorizeRequests()
 //                .antMatchers("/", "/index", "/css/*", "/js/*").permitAll()
-//                .and().authorizeRequests().antMatchers("/console/**").permitAll() // H2
+//                .antMatchers("/h2-console/**").permitAll() // h2
 //                .antMatchers("/api/**").hasRole(STUDENT.name())
 //
 //// replaced by @EnableGlobalMethodSecurity(prePostEnabled = true) !!! Using annotations in Controller
@@ -124,7 +128,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/index", "/css/*", "/js/*").permitAll()
-                .and().authorizeRequests().antMatchers("/console/**").permitAll() // H2
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/api/**").hasRole(STUDENT.name())
                 .anyRequest()
                 .authenticated()
